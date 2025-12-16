@@ -1,6 +1,17 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const CharacterCard = ({ character }) => {
+  const navigate = useNavigate();
+
+  const handleSelected = () => {
+    navigate(`/character/${character.id}`);
+  };
+
   return (
-    <div className="relative mx-auto bg-white rounded-2xl shadow-md overflow-hidden 
+    <div
+      onClick={handleSelected}
+      className="relative mx-auto bg-white rounded-2xl shadow-md overflow-hidden 
     sm:w-[240px]
     md:w-[250px]
     lg:w-[400px]
@@ -9,8 +20,8 @@ const CharacterCard = ({ character }) => {
     md:h-[350px]
     lg:h-[450px]
     
-    ">
-
+    "
+    >
       {/* IMAGEN */}
       <img
         src={character.img}
@@ -21,20 +32,19 @@ const CharacterCard = ({ character }) => {
       />
 
       {/* OVERLAY INFERIOR */}
-      <div className="
+      <div
+        className="
         absolute bottom-0 left-0 w-full
         bg-gradient-to-t from-black/80 to-transparent
         p-4
-      ">
-        <h3 className="text-white text-lg font-semibold">
-          {character.name}
-        </h3>
+      "
+      >
+        <h3 className="text-white text-lg font-semibold">{character.name}</h3>
 
         <p className="text-gray-300 text-sm">
-          Creado en {character.created}
+          Creado el {character.created_at}
         </p>
       </div>
-
     </div>
   );
 };

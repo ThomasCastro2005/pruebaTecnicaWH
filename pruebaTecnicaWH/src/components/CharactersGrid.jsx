@@ -1,28 +1,50 @@
-import CharacterCard from "./CharacterCard"
+import { useEffect, useState } from "react";
+import CharacterCard from "./CharacterCard";
+import { getCharacters } from "../services/characters.service";
 
 const CharactersGrid = () => {
+  const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  console.log("Characters:", characters);
 
-    const mockCharacters = [
-    { id: 1, name: "Hero 1", img: "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg" },
-    { id: 2, name: "Hero 2", img: "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg" },
-    { id: 3, name: "Hero 3", img: "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg" },
-    { id: 4, name: "Hero 4", img: "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16.jpg" },
-  ];
+  useEffect(() => {
+    getCharacters()
+      .then((data) => {
+        console.log("DATA REAL:", data);
+        setCharacters(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p className="text-center">Cargando personajes...</p>;
+  }
+
+  if (error) {
+    return (
+      <p className="text-center text-red-500">Error al cargar personajes</p>
+    );
+  }
 
   return (
-    <>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-y-5 
+    <div
+      className="
+        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-y-5
         sm:px-10
         md:px-20
         lg:px-0
-        
-        '>
-            {mockCharacters.map((character) => (
-                <CharacterCard key={character.id} character={character} />
-            ))}
-        </div>
-    </>
-  )
-}
+      "
+    >
+      {characters.map((character) => (
+        <CharacterCard key={character.id} character={character} />
+      ))}
+    </div>
+  );
+};
 
 export default CharactersGrid;

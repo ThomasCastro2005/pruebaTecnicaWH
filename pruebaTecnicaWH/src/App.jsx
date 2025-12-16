@@ -1,18 +1,21 @@
-import { useState } from 'react'
-import './App.css'
-import Home from "./pages/Home"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import CreateCharacter from "./pages/CreateCharacter";
+import CharacterDetail from "./pages/CharacterDetail";
 
-
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div className='bg-gray-100 min-h-screen'>
-        <Home />
-      </div>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Navbar />
 
-export default App
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<CreateCharacter />} />
+        <Route path="/character/:id" element={<CharacterDetail />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;

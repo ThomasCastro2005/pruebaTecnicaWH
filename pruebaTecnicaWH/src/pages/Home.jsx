@@ -1,7 +1,9 @@
 import React from "react";
 import SeriesSlider from "../components/SeriesSlider";
 import CharactersGrid from "../components/CharactersGrid";
-import AboutCharacter from "../components/AboutCharacter";
+import AboutCharacter from "./AboutCharacter";
+import CreateCharacter from "./CreateCharacter";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -12,17 +14,17 @@ const Home = () => {
         </div>
 
         <div className="bg-gray-200 p-5">
-          <a
-            href=""
-            className="bg-red-700 text-amber-50  lg:mx-[70px] md:mx-[30px]
-            px-[30px] py-[2px]
+          <Link
+            to="/create"
+            className="bg-red-700 text-amber-50 font-semibold  
+            px-[30px] py-[3px]
             sm:px-[100px] sm:py-[5px]
-            md:px-[100px] md:py-[5px]
-            lg:px-[100px] lg:py-[5px]
+            md:px-[100px] md:py-[5px] md:mx-[30px]
+            lg:px-[100px] lg:py-[5px] lg:mx-[70px]
             rounded-2xl"
           >
-            Ver personajes
-          </a>
+            See characters
+          </Link>
         </div>
 
         <section
