@@ -1,6 +1,7 @@
-###WindmarHome - Marvel Universe App
+### WindmarHome - Marvel Universe App
 
-#####Nota importante:
+##### Nota importante:
+
 Esta aplicación fue desarrollada utilizando datos propios en la base de datos (`marvel_db`) porque la API oficial de Marvel requiere acceso mediante un developer key que no estaba disponible para esta prueba. Por eso, todos los personajes y sus detalles se cargan directamente desde PostgreSQL.
 
 Una aplicación Full Stack que permite explorar héroes de Marvel mediante un slider dinámico con autoplay. Construida con un enfoque en diseño moderno, rendimiento y buenas prácticas en React y Node.js.
